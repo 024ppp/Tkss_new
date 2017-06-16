@@ -1,0 +1,877 @@
+//品質検査（出荷）システム　テーブル登録
+struct  KSM01_DATA   {               //製品企画マスター
+    char	DTKSHIN[21];        //得意先品番
+    char   	REVCNT[4];         	//改訂番号
+    char   	HINBAN[21];        	//自社品番
+    char  	DTKSCOD[6];        	//得意先コード
+    char  	DTKSNAM[51];        //得意先名称
+    char  	ZISNAM[21];         //材質名称（品種）
+    char  	HINMEI[61];         //品名
+    char  	DTKSHIN1_SZ[21];    //素材用得意先品番１
+    char  	DTKSHIN2_SZ[21];    //素材用得意先品番２
+    char  	DTKSHIN3_SZ[21];    //素材用得意先品番３
+    char  	DTKSHIN4_SZ[21];    //素材用得意先品番４
+    char  	DTKSHIN5_SZ[21];    //素材用得意先品番５
+    char  	DTKSHIN6_SZ[21];    //素材用得意先品番６
+    char    LOT_LINK_SZ[2];    	//素材ロットのリンク
+    char    SOKUTEI_NUM[3];    	//測定項目数
+    char    OUT_TITLE1[5];     	//成績書タイトル出力項目１
+    char    OUT_TITLE2[5];     	//成績書タイトル出力項目２
+    char    OUT_TITLE3[5];     	//成績書タイトル出力項目３
+    char    OUT_TITLE4[5];     	//成績書タイトル出力項目４
+    char    OUT_TITLE5[5];     	//成績書タイトル出力項目５
+    char    OUT_TITLE6[5];     	//成績書タイトル出力項目６
+    char    OUT_TITLE7[5];     	//成績書タイトル出力項目７
+    char    OUT_TITLE8[5];     	//成績書タイトル出力項目８
+    char    X_OUT[2];          	//Xバー(平均）の出力
+    char  	MEMO[129];      	//備考
+    char  	ADDYMD[9];         	//登録日
+    char  	ADDTIM[5];         	//登録時間
+    char  	UPDYMD[9];         	//変更日
+    char  	UPDTIM[5];         	//変更時間
+    char    UPDCHR[7];         	//更新者
+    char    UPDCNT[4];         	//更新回数
+    //AnsiString UPDNAME;         //表示用更新者ネーム	//2003.05.10 E.Takase Add
+    char    UPDNAME[50];        //表示用更新者ネーム	//2003.05.17 E.Takase Add
+} ;
+
+struct KSM02_DATA {       		//製品規格明細マスター
+    char	DTKSHIN[21];        //得意先品番
+    char    REVCNT[5];         	//改訂番号
+    char    UNQ_NO[5];         	//明細NO
+    char    ORDER_NO[5];       	//表示・印刷順
+    char    SKB_NO[2];         	//識別NO
+    char  	HINBAN_SK[21];      //品番
+    char    KOMK_NO[5];        	//測定項目NO
+    char  	KOMK_NM[41];        //測定項目名称
+    char  	KOMK_ENG[41];       //測定項目名称（英語）
+    char  	KOMK_SUB[21];       //測定項目サブ名称
+    char  	KOMK_SUB_ENG[21];   //測定項目サブ名称（英語）
+    char    KIKI_NO[3];        	//測定機器NO
+    char  	KIKI_NM[41];        //測定機器名称
+    char  	TANI[21];           //単位
+    char    KIKA_TYPE[2];      	//規格タイプ
+    char    KIKA_KIND[2];      	//規格種類
+    char    KIKA_DECI[2];      	//規格小数点以下桁数
+    char    KIKA_NUM1[13];      //規格値1
+    char    KIKA_NUM2[13];      //規格値2
+    char    KIKA_NUM3[13];      //規格値3
+    char  	KIKA_STR[41];       //規格値文字
+    char  	KIKA_SUB1[21];      //規格値サブ1
+    char   	KIKA_SUB2[21];      //規格値サブ2
+    char  	KIKA_SUB3[21];      //規格値サブ3
+    char    SOKU_SU[3];        	//測定指示ｎ数
+    char    SOKU_FLG[2];       	//測定項目の有無
+    char    TOKU_FLG[2];       	//特別項目の有無
+    char    KIKA_PRT[2];       	//上限下限値の印刷
+    char    VALUE_TYPE[2];     	//測定値表現
+    char    VALUE_DECI[2];     	//測定値小数点以下桁数
+};
+
+struct KSM11_DATA {          	//測定項目マスター
+    char	KOMK_NO[5];        	//測定項目
+    char    ORDER_NO[5];       	//表示・印刷順
+    char  	KOMK_NM[41];        //測定項目名称
+    char  	KOMK_ENG[41];       //測定項目名称（英語）
+    char  	KOMK_SUB[21];       //測定項目サブ名称
+    char  	KOMK_SUB_ENG[21];   //測定項目サブ名称（英語）
+    char    KIKI_NO[3];        	//測定機器NO
+    char  	KIKI_NM[41];        //測定機器名称
+    char  	TANI[21];           //単位
+    char    KIKA_TYPE[2];      	//規格タイプ
+    char    KIKA_KIND[2];      	//規格種類
+    char    KIKA_DECI[2];      	//規格小数点以下桁数
+    char    KIKA_NUM1[13];      //規格値１
+    char    KIKA_NUM2[13];      //規格値２
+    char    KIKA_NUM3[13];      //規格値３
+    char  	KIKA_STR[41];       //規格値文字
+    char  	KIKA_SUB1[21];      //規格値サブ１
+    char  	KIKA_SUB2[21];      //規格値サブ２
+    char  	KIKA_SUB3[21];      //規格値サブ３
+    char    SOKU_SU[3];        	//測定指示ｎ数
+    char    SOKU_FLG[2];       	//測定項目の有無
+    char    TOKU_FLG[2];       	//特別項目の有無
+    char    KIKA_PRT[2];       	//上限下限値の印刷
+    char    VALUE_TYPE[2];     	//測定値表現
+    char    VALUE_DECI[2];     	//測定値小数点以下桁数
+    char   	ADDYMD[9];         	//登録日
+    char   	ADDTIM[5];         	//登録時間
+    char   	UPDYMD[9];         	//変更日
+    char  	UPDTIM[5];         	//変更時間
+    char   	UPDCHR[7];         	//更新者
+    char    UPDCNT[4];         	//更新回数
+    //AnsiString UPDNAME;         //表示用更新者ネーム	//2003.05.10 E.Takase Add
+    char    UPDNAME[50];        //表示用更新者ネーム	//2003.05.17 E.Takase Add
+};
+
+struct  KSM12_DATA   {               //材料証明項目マスター
+    char	KOMK_NO[5];        //測定項目
+    char    ORDER_NO[5];       //表示・印刷順
+    char  	KOMK_NM[41];        //測定項目名称
+    char  	KOMK_ENG[41];       //測定項目名称（英語）
+    char  	KOMK_SUB[21];       //測定項目サブ名称
+    char  	KOMK_SUB_ENG[21];   //測定項目サブ名称（英語）
+    char    KIKI_NO[3];        //測定機器NO
+    char  	KIKI_NM[41];        //測定機器名称
+    char  	TANI[21];           //単位
+    char    KIKA_TYPE[2];      //規格タイプ
+    char    KIKA_KIND[2];      //規格種類
+    char    KIKA_DECI[2];      //規格小数点以下桁数
+    char    KIKA_NUM1[13];      //規格値１
+    char    KIKA_NUM2[13];      //規格値２
+    char    KIKA_NUM3[13];      //規格値３
+    char  	KIKA_STR[41];       //規格値文字
+    char  	KIKA_SUB1[21];      //規格値サブ１
+    char  	KIKA_SUB2[21];      //規格値サブ２
+    char  	KIKA_SUB3[21];      //規格値サブ３
+    char    SOKU_SU[3];        //測定指示ｎ数
+    char    SOKU_FLG[2];       //測定項目の有無
+    char    TOKU_FLG[2];       //特別項目の有無
+    char    KIKA_PRT[2];       //上限下限値の印刷
+    char    VALUE_TYPE[2];     //測定値表現
+    char    VALUE_DECI[2];     //測定値小数点以下桁数
+    char  	ADDYMD[9];         //登録日
+    char  	ADDTIM[5];         //登録時間
+    char  	UPDYMD[9];         //変更日
+    char  	UPDTIM[5];         //変更時間
+    char    UPDCHR[7];         //更新者
+    char    UPDCNT[4];         //更新回数
+    //AnsiString UPDNAME;         //表示用更新者ネーム	//2003.05.10 E.Takase Add
+    char    UPDNAME[50];        //表示用更新者ネーム	//2003.05.17 E.Takase Add
+};
+
+
+struct  KSM13_DATA   {               //素材測定項目マスター
+    char	KOMK_NO[5];        //測定項目
+    char    ORDER_NO[5];       //表示・印刷順
+    char  	KOMK_NM[41];        //測定項目名称
+    char  	KOMK_ENG[41];       //測定項目名称（英語）
+    char  	KOMK_SUB[21];       //測定項目サブ名称
+    char  	KOMK_SUB_ENG[21];   //測定項目サブ名称（英語）
+    char    KIKI_NO[3];        //測定機器NO
+    char  	KIKI_NM[41];        //測定機器名称
+    char  	TANI[21];           //単位
+    char    KIKA_TYPE[2];      //規格タイプ
+    char    KIKA_KIND[2];      //規格種類
+    char    KIKA_DECI[2];      //規格小数点以下桁数
+    char    KIKA_NUM1[13];      //規格値１
+    char    KIKA_NUM2[13];      //規格値２
+    char    KIKA_NUM3[13];      //規格値３
+    char  	KIKA_STR[41];       //規格値文字
+    char  	KIKA_SUB1[21];      //規格値サブ１
+    char  	KIKA_SUB2[21];      //規格値サブ２
+    char  	KIKA_SUB3[21];      //規格値サブ３
+    char    SOKU_SU[3];        //測定指示ｎ数
+    char    SOKU_FLG[2];       //測定項目の有無
+    char    TOKU_FLG[2];       //特別項目の有無
+    char    KIKA_PRT[2];       //上限下限値の印刷
+    char    VALUE_TYPE[2];     //測定値表現
+    char    VALUE_DECI[2];     //測定値小数点以下桁数
+    char  	ADDYMD[9];         //登録日
+    char  	ADDTIM[5];         //登録時間
+    char  	UPDYMD[9];         //変更日
+    char  	UPDTIM[5];         //変更時間
+    char    UPDCHR[7];         //更新者
+    char    UPDCNT[4];         //更新回数
+    //AnsiString UPDNAME;         //表示用更新者ネーム	//2003.05.10 E.Takase Add
+    char    UPDNAME[50];        //表示用更新者ネーム	//2003.05.17 E.Takase Add
+};
+
+struct  KSM14_DATA {                 //測定機器項目マスター
+    char    KIKA_NO[3];      //項目NO
+    char    ORDER_NO[3];       //表示・印刷順
+    char  	KIKI_NM[41];        //測定機器名
+    char  	ADDYMD[9];         //登録日
+    char  	ADDTIM[5];         //登録時間
+    char  	UPDYMD[9];         //変更日
+    char  	UPDTIM[5];         //変更時間
+    char    UPDCHR[7];         //更新者
+    char    UPDCNT[4];         //更新回数
+    //AnsiString UPDNAME;         //表示用更新者ネーム	//2003.05.10 E.Takase Add
+    char    UPDNAME[50];        //表示用更新者ネーム	//2003.05.17 E.Takase Add
+};
+
+struct KSM21_DATA {
+	char	KMK_NO[5];
+	char	ORDER_NO[5];
+	char	KMK_NM_JPN[129];
+	char	KMK_NM_ENG[129];
+	char	NOUPD_FLG[2];
+	char	ADDYMD[9];
+    char	ADDTIM[5];
+	char	UPDYMD[9];
+	char	UPDTIM[5];
+	char	UPDCHR[7];
+	char	UPDCNT[4];
+    //AnsiString UPDNAME;         //表示用更新者ネーム	//2003.05.10 E.Takase Add
+    char    UPDNAME[50];        //表示用更新者ネーム	//2003.05.17 E.Takase Add
+};
+
+struct KSD01_DATA {          	//測定実績データ
+    char  	DTKSHIN[21];        //得意先品番
+    char  	LOTNO[7];          	//ロットNo
+	char	LOTNO1_SZ[7];		//素材検査用ロットNo1
+    char 	LOTNO2_SZ[7];      	//素材検査用ロットNO2
+    char 	LOTNO3_SZ[7];       //素材検査用ロットNO3
+    char 	LOTNO4_SZ[7];       //素材検査用ロットNO4
+    char 	LOTNO5_SZ[7];      	//素材検査用ロットNO5
+    char 	LOTNO6_SZ[7];       //素材検査用ロットNO6
+	char	LOTNOCHANGE1_SZ[2];	//素材検査用ロット変更フラグNO1
+	char	LOTNOCHANGE2_SZ[2];	//素材検査用ロット変更フラグNO2
+	char	LOTNOCHANGE3_SZ[2];	//素材検査用ロット変更フラグNO3
+	char	LOTNOCHANGE4_SZ[2];	//素材検査用ロット変更フラグNO4
+	char	LOTNOCHANGE5_SZ[2];	//素材検査用ロット変更フラグNO5
+	char	LOTNOCHANGE6_SZ[2];	//素材検査用ロット変更フラグNO6
+    char  	HINBAN[21];         //自社品番
+    char  	DTKSCOD[6];        	//得意先コード
+    char  	DTKSNAM[51];        //得意先名称
+    char  	ZISNAM[21];         //材質名称
+    char  	HINMEI[61];         //品名
+    char  	DTKSHIN1_SZ[21];    //素材用得意先品番１
+    char  	DTKSHIN2_SZ[21];    //素材用得意先品番２
+    char  	DTKSHIN3_SZ[21];    //素材用得意先品番３
+    char  	DTKSHIN4_SZ[21];    //素材用得意先品番４
+    char  	DTKSHIN5_SZ[21];    //素材用得意先品番５
+    char  	DTKSHIN6_SZ[21];    //素材用得意先品番６
+    char    LOT_LINK_SZ[2];    	//素材用ロットのリンク
+    char    SOKUTEI_NUM[3];    	//測定項目数
+    char    SOZAI_OK[3];       	//素材判定
+    char    SOZAI_OK_PRT[3];   	//素材判定　印刷用
+    char    SYUKA_OK[3];       	//出荷判定
+    char    SYUKA_OK_PRT[3];   	//出荷判定　印刷用
+    char    OUT_TITLE1[5];     	//成績所タイトル出力項目１
+    char    OUT_TITLE2[5];     	//成績所タイトル出力項目２
+    char    OUT_TITLE3[5];     	//成績所タイトル出力項目３
+    char    OUT_TITLE4[5];     	//成績所タイトル出力項目４
+    char    OUT_TITLE5[5];     	//成績所タイトル出力項目５
+    char    OUT_TITLE6[5];     	//成績所タイトル出力項目６
+    char   	OUT_TITLE7[5];     	//成績所タイトル出力項目７
+    char   	OUT_TITLE8[5];     	//成績所タイトル出力項目８
+    char   	X_OUT[2];          	//Xバーの出力
+    char  	MEMO[129];        	//備考
+    char  	SKTYMD_SZ[9];       //素材用測定日
+    char  	SKTYMD_SZ_PRT[9];   //素材用測定日（印刷用）
+    char  	SKTYMD[9];         	//出荷用測定日
+    char  	SKTYMD_PRT[9];      //出荷用測定日（印刷用）
+    char  	ADDYMD[9];         	//代表登録日
+    char  	ADDTIM[5];         	//代表登録時間
+    char  	UPDYMD[9];         	//代表変更日
+    char  	UPDTIM[5];         	//代表変更時間
+    char    UPDCHR[7];         	//代表更新者
+    char    UPDCNT[4];         	//代表更新回数
+
+    char  	KOMKNO1_SZ[5];    	//素材用得意先品番１
+    char  	KOMKNO2_SZ[5];    	//素材用得意先品番２
+    char  	KOMKNO3_SZ[5];    	//素材用得意先品番３
+    char  	KOMKNO4_SZ[5];    	//素材用得意先品番４
+    char  	KOMKNO5_SZ[5];    	//素材用得意先品番５
+    char  	KOMKNO6_SZ[5];    	//素材用得意先品番６
+    char  	KOMKNM1_SZ[41];    	//素材用得意先品番１
+    char  	KOMKNM2_SZ[41];    	//素材用得意先品番２
+    char  	KOMKNM3_SZ[41];    	//素材用得意先品番３
+    char  	KOMKNM4_SZ[41];    	//素材用得意先品番４
+    char  	KOMKNM5_SZ[41];    	//素材用得意先品番５
+    char  	KOMKNM6_SZ[41];    	//素材用得意先品番６
+    char  	KOMKSUB1_SZ[21];    //素材用得意先品番１
+    char  	KOMKSUB2_SZ[21];    //素材用得意先品番２
+    char  	KOMKSUB3_SZ[21];    //素材用得意先品番３
+    char  	KOMKSUB4_SZ[21];    //素材用得意先品番４
+    char  	KOMKSUB5_SZ[21];    //素材用得意先品番５
+    char  	KOMKSUB6_SZ[21];    //素材用得意先品番６
+	bool	UPD_FLG;			//更新有りフラグ
+	bool	SAVE_FLG;			//保存フラグ
+    //AnsiString UPDNAME;         //表示用更新者ネーム	//2003.05.10 E.Takase Add
+    char    UPDNAME[50];        //表示用更新者ネーム	//2003.05.17 E.Takase Add
+
+};
+
+struct KSD02_DATA {          	//測定実績明細データ
+    char  	DTKSHIN[21];        //得意先品番
+    char  	LOTNO[7];          	//ロットNo
+    char  	UNQ_NO[5];         	//素材用ロットNO
+    char 	ORDER_NO[5];       	//自社品番
+    char   	SKB_NO[2];         	//得意先コード
+    char  	HINBAN_SK[21];      //得意先名称
+    char   	KOMK_NO[5];        	//材質名称
+    char   	KOMK_NM[41];        //品名
+    char	KOMK_ENG[41];       //素材用得意先品番１
+    char  	KOMK_SUB[21];       //素材用得意先品番２
+    char  	KOMK_SUB_ENG[21];   //素材用得意先品番３
+    char    KIKI_NO[3];        	//測定機器NO
+    char  	KIKI_NM[41];        //測定機器名称
+    char  	TANI[21];           //単位
+    char   	KIKA_TYPE[2];      	//規格タイプ
+    char   	KIKA_KIND[2];      	//規格種類
+    char   	KIKA_DECI[2];      	//規格小数点以下桁数
+    char    KIKA_NUM1[13];      //規格値１
+    char    KIKA_NUM2[13];      //規格値２
+    char    KIKA_NUM3[13];      //規格値３
+    char  	KIKA_STR[41];       //規格値文字
+    char  	KIKA_SUB1[21];      //規格値サブ１
+    char   	KIKA_SUB2[21];      //規格値サブ２
+    char   	KIKA_SUB3[21];      //規格値サブ３
+    char    SOKU_SU[3];        	//測定指示ｎ数
+    char   	SOKU_FLG[2];       	//測定項目の有無
+    char    TOKU_FLG[2];       	//特別項目の有無
+    char    KIKA_PRT[2];       	//上限下限値の印刷
+    char    VALUE_TYPE[2];     	//測定値表現
+    char    VALUE_DECI[2];     	//測定値小数点以下桁数
+    char  	SOKU_VAL01[15];     //測定値１
+    char 	SOKU_VAL02[15];     //測定値２
+    char  	SOKU_VAL03[15];     //測定値３
+    char  	SOKU_VAL04[15];     //測定値４
+    char  	SOKU_VAL05[15];     //測定値５
+    char  	SOKU_VAL06[15];     //測定値６
+    char  	SOKU_VAL07[15];     //測定値７
+    char  	SOKU_VAL08[15];     //測定値８
+    char  	SOKU_VAL09[15];     //測定値９
+    char  	SOKU_VAL10[15];     //測定値１０
+    char    SOKU_VAL_SU[3];    	//測定実績ｎ数
+    char    SOKU_VAL_AVE[16];   //測定平均値
+    char    SOKU_VAL_MAX[15];   //測定最大値
+    char    SOKU_VAL_MIN[15];   //測定最小値
+    char    SOKU_OK[3];        	//測定値判定
+    char  	DISP_VAL01[15];     //印刷用測定値１
+    char  	DISP_VAL02[15];     //印刷用測定値２
+    char  	DISP_VAL03[15];     //印刷用測定値３
+    char  	DISP_VAL04[15];     //印刷用測定値４
+    char  	DISP_VAL05[15];     //印刷用測定値５
+    char  	DISP_VAL06[15];     //印刷用測定値６
+    char  	DISP_VAL07[15];     //印刷用測定値７
+    char  	DISP_VAL08[15];     //印刷用測定値８
+    char  	DISP_VAL09[15];     //印刷用測定値９
+    char  	DISP_VAL10[15];     //印刷用測定値１０
+    char    DISP_VAL_SU[3];    	//印刷用測定実績ｎ数
+    char    DISP_VAL_AVE[16];   //印刷用測定平均値
+    char    DISP_VAL_MAX[15];   //印刷用測定最大値
+    char    DISP_VAL_MIN[15];   //印刷用測定最小値
+    char    DISP_OK[3];        	//印刷用測定値判定
+    char  	SKTYMD[9];         	//測定日
+    char  	ADDYMD[9];         	//登録日
+    char  	ADDTIM[9];         	//登録時間
+    char  	UPDYMD[9];         	//変更日
+    char  	UPDTIM[9];         	//変更時間
+    char    UPDCHR[7];         	//更新者
+    char    UPDCNT[4];         	//更新回数
+    //AnsiString UPDNAME;         //表示用更新者ネーム	//2003.05.10 E.Takase Add
+    char    UPDNAME[50];        //表示用更新者ネーム	//2003.05.17 E.Takase Add
+};
+
+
+struct  KSD03_DATA   {               //測定実績例外データ
+    char  	DTKSHIN[21];        //得意先品番
+    char  	LOTNO[7];          //ロットNO
+    char    UNQ_NO[5];         //明細NO
+    char  	SOKU_NO[3];        //測定NO（何回目の測定）
+    char  	SOKU_VAL[15];       //測定値
+    char  	DISP_VAL[15];       //印刷用測定値
+};
+
+struct  KSD11_DATA   {               //測定実績分割データ
+    char  	DTKSHIN[21];        //得意先品番
+    char  	LOTNO[7];          //ロットNO
+    char    BNKT_UNQ_NO[5];    //分活用明細NO
+    char    UNQ_NO[5];         //明細NO
+    char    KOMK_NO[5];        //測定項目NO
+    char    SOKU_SU[3];        //測定指示ｎ数
+    char  	SOKU_VAL01[15];     //測定値1
+    char  	SOKU_VAL02[15];     //測定値2
+    char  	SOKU_VAL03[15];     //測定値3
+    char  	SOKU_VAL04[15];     //測定値4
+    char  	SOKU_VAL05[15];     //測定値5
+    char  	SOKU_VAL06[15];     //測定値6
+    char  	SOKU_VAL07[15];     //測定値7
+    char  	SOKU_VAL08[15];     //測定値8
+    char 	SOKU_VAL09[15];     //測定値9
+    char  	SOKU_VAL10[15];     //測定値10
+    char    SOKU_VAL_SU[3];    //測定実績ｎ数
+    char    SOKU_VAL_AVE[16];   //測定平均値
+    char    SOKU_VAL_MAX[16];   //測定最大値
+    char    SOKU_VAL_MIN[16];   //測定最小値
+    char    SOKU_OK[2];        //測定値判定
+    char  	SKTYMD[9];         //測定日
+    char  	ADDYMD[9];         //登録日
+    char  	ADDTIM[5];         //登録時間
+    char  	UPDYMD[9];         //変更日
+    char  	UPDTIM[5];         //変更時間
+    char    UPDCHR[7];         //更新者
+    char    UPDCNT[4];         //更新回数
+    //AnsiString UPDNAME;         //表示用更新者ネーム	//2003.05.10 E.Takase Add
+    char    UPDNAME[50];        //表示用更新者ネーム	//2003.05.17 E.Takase Add
+};
+
+struct  KSD12_DATA   {               //測定実績分割例外データ
+    char  	DTKSHIN[21];        //得意先品番
+    char  	LOTNO[7];          //ロットNO
+    char    BNKT_UNQ_NO[5];    //分割用明細NO
+    char    SOKU_NO[3];        //測定NO
+    char  	SOKU_VAL[15];       //測定値
+};
+
+struct  KSD21_DATA   {               //素材測定実績データ
+    char  	DTKSHIN[21];        //素材検査時の品番
+    char  	LOTNO[7];          //ロットNO
+    char  	HINBAN[21];         //自社品番
+    char  	DTKSCOD[6];        //得意先コード
+    char  	DTKSNAM[51];        //得意先名称
+    char  	ZISNAM[21];         //材質名称（品種）
+    char    SOKUTEI_NUM[3];    //測定項目数
+    char    SOZAI_OK[2];       //素材判定
+    char  	MEMO[129];           //備考
+    char  	SKTYMD[9];         //測定日
+    char  	ADDYMD[9];         //登録日
+    char  	ADDTIM[5];         //登録時間
+    char  	UPDYMD[9];         //変更日
+    char  	UPDTIM[5];         //変更時間
+    char    UPDCHR[7];         //更新者
+    char    UPDCNT[4];         //更新回数
+    //AnsiString UPDNAME;         //表示用更新者ネーム	//2003.05.10 E.Takase Add
+    char    UPDNAME[50];        //表示用更新者ネーム	//2003.05.17 E.Takase Add
+};
+
+struct  KSD22_DATA   {               //素材測定実績明細データ
+    char  	DTKSHIN[21];        //得意先品番
+    char  	LOTNO[7];          //ロットNO
+    char    UNQ_NO[5];         //明細NO
+    char    KOMK_NO[5];        //測定項目NO
+    char  	KOMK_NM[41];        //測定項目名称
+    char  	KOMK_ENG[41];       //測定項目名称（英語）
+    char  	KOMK_SUB[21];       //測定項目サブ名称
+    char  	KOMK_SUB_ENG[21];   //測定項目サブ名称（英語）
+    char    KIKI_NO[3];        //測定機器NO
+    char  	KIKI_NM[41];        //測定機器名称
+    char  	TANI[21];           //単位
+    char    KIKA_TYPE[2];      //規格タイプ
+    char    KIKA_KIND[2];      //規格種類
+    char    KIKA_DECI[2];      //規格小数点以下桁数
+    char    KIKA_NUM1[13];      //規格値１
+    char    KIKA_NUM2[13];      //規格値２
+    char    KIKA_NUM3[13];      //規格値３
+    char  	KIKA_STR[41];       //規格値文字
+    char  	KIKA_SUB1[21];      //規格値サブ１
+    char  	KIKA_SUB2[21];      //規格値サブ２
+    char    SOKU_SU[3];        //測定指示ｎ数
+	char	VALUE_TYPE[2];		//測定値表現
+    char    VALUE_DECI[2];     //測定値小数点以下桁数
+    char  	SOKU_VAL01[15];     //測定値１
+    char  	SOKU_VAL02[15];     //測定値２
+    char  	SOKU_VAL03[15];     //測定値３
+    char  	SOKU_VAL04[15];     //測定値４
+    char  	SOKU_VAL05[15];     //測定値５
+    char  	SOKU_VAL06[15];     //測定値６
+    char  	SOKU_VAL07[15];     //測定値７
+    char  	SOKU_VAL08[15];     //測定値８
+    char  	SOKU_VAL09[15];     //測定値９
+    char  	SOKU_VAL10[15];     //測定値１０
+    char    SOKU_VAL_SU[3];    //測定実績ｎ数
+    char    SOKU_VAL_AVE[14];   //測定平均値
+    char    SOKU_VAL_MAX[13];   //測定最大値
+    char    SOKU_VAL_MIN[13];   //測定最小値
+    char    SOKU_OK[2];        //測定値判定
+    char  	SKTYMD[9];         //測定日
+    char  	ADDYMD[9];         //登録日
+    char  	ADDTIM[5];         //登録時間
+    char  	UPDYMD[9];         //変更日
+    char  	UPDTIM[5];         //変更時間
+    char    UPDCHR[7];         //更新者
+    char    UPDCNT[4];         //更新回数
+    //AnsiString UPDNAME;         //表示用更新者ネーム	//2003.05.10 E.Takase Add
+    char    UPDNAME[50];        //表示用更新者ネーム	//2003.05.17 E.Takase Add
+};
+
+struct  KSD23_DATA   {               //素材測定実績例外データ
+    char  	DTKSHIN[21];        //得意先品番
+    char  	LOTNO[7];          //ロットNO
+    char    UNQ_NO[5];         //明細NO
+    char    SOKU_NO[3];        //測定NO（何回目の測定）
+    char  	SOKU_VAL[15];       //測定値
+};
+
+
+struct GRAPHADDRESS	{
+	int 	GRID;		//Grid番号
+	int 	COL;        //スタートカラム
+	double 	SUM;        //ロット合計
+	double 	AVE;        //ロット平均
+    double 	MAX;        //ロットMax
+	double 	MIN;        //ロットMin
+	int 	NCNT;       //ロットサンプル数
+	//AnsiString LOTNAME; //ロット名
+	char LOTNAME[6]; 	//ロット名  	//2003.05.17 E.Takase Add
+};
+
+struct RSCOM {
+	int COMNO;
+};
+
+//struct KIKAKU {
+//	AnsiString HANI;
+//	AnsiString UPLIMIT;
+//	AnsiString LOLIMIT;
+//};
+struct KIKAKU {
+	char HANI[50];
+	char UPLIMIT[20];
+	char LOLIMIT[20];
+};
+
+/*
+struct CELLINFO_JISSEKI_DATA { 	//測定実績データ
+    char  	DTKSHIN[21];        //得意先品番
+    char  	LOTNO[7];          	//ロットNo
+	char	LOTNO1_SZ[7];		//素材検査用ロットNo1
+    char 	LOTNO2_SZ[7];      	//素材検査用ロットNO2
+    char 	LOTNO3_SZ[7];       //素材検査用ロットNO3
+    char 	LOTNO4_SZ[7];       //素材検査用ロットNO4
+    char 	LOTNO5_SZ[7];      	//素材検査用ロットNO5
+    char 	LOTNO6_SZ[7];       //素材検査用ロットNO6
+    char  	HINBAN[21];         //自社品番
+    char  	DTKSCOD[6];        	//得意先コード
+    char  	DTKSNAM[51];        //得意先名称
+    char  	ZISNAM[21];         //材質名称
+    char  	HINMEI[61];         //品名
+    char  	DTKSHIN1_SZ[21];    //素材用得意先品番１
+    char  	DTKSHIN2_SZ[21];    //素材用得意先品番２
+    char  	DTKSHIN3_SZ[21];    //素材用得意先品番３
+    char  	DTKSHIN4_SZ[21];    //素材用得意先品番４
+    char  	DTKSHIN5_SZ[21];    //素材用得意先品番５
+    char  	DTKSHIN6_SZ[21];    //素材用得意先品番６
+    char    LOT_LINK_SZ[2];    	//素材用ロットのリンク
+    char    SOKUTEI_NUM[3];    	//測定項目数
+    char    SOZAI_OK[2];       	//素材判定
+    char    SOZAI_OK_PRT[2];   	//素材判定　印刷用
+    char    SYUKA_OK[2];       	//出荷判定
+    char    SYUKA_OK_PRT[2];   	//出荷判定　印刷用
+    char    OUT_TITLE1[5];     	//成績所タイトル出力項目１
+    char    OUT_TITLE2[5];     	//成績所タイトル出力項目２
+    char    OUT_TITLE3[5];     	//成績所タイトル出力項目３
+    char    OUT_TITLE4[5];     	//成績所タイトル出力項目４
+    char    OUT_TITLE5[5];     	//成績所タイトル出力項目５
+    char    OUT_TITLE6[5];     	//成績所タイトル出力項目６
+    char   	OUT_TITLE7[5];     	//成績所タイトル出力項目７
+    char   	OUT_TITLE8[5];     	//成績所タイトル出力項目８
+    char   	X_OUT[2];          	//Xバーの出力
+    char  	MEMO[129];        	//備考
+    char  	SKTYMD[9];         	//測定日
+    char  	SKTYMD_PRT[9];     	//測定日　印刷用
+    char  	ADDYMD[9];         	//代表登録日
+    char  	ADDTIM[5];         	//代表登録時間
+    char  	UPDYMD[9];         	//代表変更日
+    char  	UPDTIM[5];         	//代表変更時間
+    char    UPDCHR[7];         	//代表更新者
+    char    UPDCNT[4];         	//代表更新回数
+    //AnsiString UPDNAME;         //表示用更新者ネーム	//2003.05.10 E.Takase Add
+    char    UPDNAME[50];        //表示用更新者ネーム	//2003.05.17 E.Takase Add
+};
+*/
+
+struct CELLINFO_DATA {          //測定実績明細データ
+    char  	DTKSHIN[21];        //得意先品番
+    char  	LOTNO[7];          	//ロットNo
+    char  	UNQ_NO[5];         	//素材用ロットNO
+    char 	ORDER_NO[5];       	//自社品番
+    char   	SKB_NO[2];         	//得意先コード
+    char  	HINBAN_SK[21];      //得意先名称
+    char   	KOMK_NO[5];        	//材質名称
+    char   	KOMK_NM[41];        //品名
+    char	KOMK_ENG[41];       //素材用得意先品番１
+    char  	KOMK_SUB[21];       //素材用得意先品番２
+    char  	KOMK_SUB_ENG[21];   //素材用得意先品番３
+    char    KIKI_NO[3];        	//測定機器NO
+    char  	KIKI_NM[41];        //測定機器名称
+    char  	TANI[21];           //単位
+    char   	KIKA_TYPE[2];      	//規格タイプ
+    char   	KIKA_KIND[2];      	//規格種類
+    char   	KIKA_DECI[2];      	//規格小数点以下桁数
+    char    KIKA_NUM1[13];      //規格値１
+    char    KIKA_NUM2[13];      //規格値２
+    char    KIKA_NUM3[13];      //規格値３
+    char  	KIKA_STR[41];       //規格値文字
+    char  	KIKA_SUB1[21];      //規格値サブ１
+    char   	KIKA_SUB2[21];      //規格値サブ２
+    char   	KIKA_SUB3[21];      //規格値サブ３
+    char    SOKU_SU[3];        	//測定指示ｎ数
+    char   	SOKU_FLG[2];       	//測定項目の有無
+    char    TOKU_FLG[2];       	//特別項目の有無
+    char    KIKA_PRT[2];       	//上限下限値の印刷
+    char    VALUE_TYPE[2];     	//測定値表現
+    char    VALUE_DECI[2];     	//測定値小数点以下桁数
+    char    SOKU_VAL_SU[3];    	//測定実績ｎ数
+    char    SOKU_VAL_AVE[14];   //測定平均値
+    char    SOKU_VAL_MAX[13];   //測定最大値
+    char    SOKU_VAL_MIN[13];   //測定最小値
+    char    SOKU_OK[2];        	//測定値判定
+    char    DISP_VAL_SU[3];    	//印刷用測定実績ｎ数
+    char    DISP_VAL_AVE[14];   //印刷用測定平均値
+    char    DISP_VAL_MAX[13];   //印刷用測定最大値
+    char    DISP_VAL_MIN[13];   //印刷用測定最小値
+    char    DISP_OK[2];        	//印刷用測定値判定
+    char  	SKTYMD[9];         	//測定日
+	char	DISP_SKTYMD[9];		//印刷用測定日
+    char  	ADDYMD[9];         	//登録日
+    char  	ADDTIM[5];         	//登録時間
+    char  	UPDYMD[9];         	//変更日
+    char  	UPDTIM[5];         	//変更時間
+    char    UPDCHR[7];         	//更新者
+    char    UPDCNT[4];         	//更新回数
+	char	MEMO[130];			//備考
+	long	COLOR;
+	char	RESULT[15];         //結果
+	char	DISP_RESULT[15];    //印刷用測定値
+	double  MAX;
+	double	MIN;
+	char	SOZAI_LOTNO[7];		//素材用ロット
+    int 	JUDGE;				// 0:OK,1:NG,2:除外か未計測
+    int 	DISP_JUDGE;				// 0:OK,1:NG,2:除外か未計測
+    //AnsiString UPDNAME;         //表示用更新者ネーム	//2003.05.10 E.Takase Add
+    char    UPDNAME[50];        //表示用更新者ネーム	//2003.05.17 E.Takase Add
+    bool    INS_ON;
+};
+
+struct GRAPH_DATA {       		//製品規格明細マスター
+    char	DTKSHIN[21];        //得意先品番
+    char    REVCNT[5];         	//改訂番号
+    char    UNQ_NO[5];         	//明細NO
+    char    ORDER_NO[5];       	//表示・印刷順
+    char    SKB_NO[2];         	//識別NO
+    char  	HINBAN_SK[21];      //品番
+    char    KOMK_NO[5];        	//測定項目NO
+    char  	KOMK_NM[41];        //測定項目名称
+    char  	KOMK_ENG[41];       //測定項目名称（英語）
+    char  	KOMK_SUB[21];       //測定項目サブ名称
+    char  	KOMK_SUB_ENG[21];   //測定項目サブ名称（英語）
+    char    KIKI_NO[3];        	//測定機器NO
+    char  	KIKI_NM[41];        //測定機器名称
+    char  	TANI[21];           //単位
+    char    KIKA_TYPE[2];      	//規格タイプ
+    char    KIKA_KIND[2];      	//規格種類
+    char    KIKA_DECI[2];      	//規格小数点以下桁数
+    char    KIKA_NUM1[13];      //規格値1
+    char    KIKA_NUM2[13];      //規格値2
+    char    KIKA_NUM3[13];      //規格値3
+    char  	KIKA_STR[41];       //規格値文字
+    char  	KIKA_SUB1[21];      //規格値サブ1
+    char   	KIKA_SUB2[21];      //規格値サブ2
+    char  	KIKA_SUB3[21];      //規格値サブ3
+    char    SOKU_SU[3];        	//測定指示ｎ数
+    char    SOKU_FLG[2];       	//測定項目の有無
+    char    TOKU_FLG[2];       	//特別項目の有無
+    char    KIKA_PRT[2];       	//上限下限値の印刷
+    char    VALUE_TYPE[2];     	//測定値表現
+    char    VALUE_DECI[2];     	//測定値小数点以下桁数
+	int		GRID_NO;
+	double 	MAX;
+	double 	MIN;
+    //AnsiString UPDNAME;         //表示用更新者ネーム	//2003.05.10 E.Takase Add
+    char    UPDNAME[50];        //表示用更新者ネーム	//2003.05.17 E.Takase Add
+};
+
+struct  BUN_DATA   {          	//測定実績分割データ
+    char  	DTKSHIN[21];        //得意先品番
+    char  	LOTNO[7];          	//ロットNo
+	char	BNKT_UNQ_NO[5];		//明細識別番号
+    char  	UNQ_NO[5];         	//素材用ロットNO
+    char   	KOMK_NO[5];        	//材質名称
+    char   	KOMK_NM[41];        //品名
+    char	KOMK_ENG[41];       //素材用得意先品番１
+    char  	KOMK_SUB[21];       //素材用得意先品番２
+    char  	KOMK_SUB_ENG[21];   //素材用得意先品番３
+    char    KIKI_NO[3];        	//測定機器NO
+    char  	KIKI_NM[41];        //測定機器名称
+    char  	TANI[21];           //単位
+    char   	KIKA_TYPE[2];      	//規格タイプ
+    char   	KIKA_KIND[2];      	//規格種類
+    char   	KIKA_DECI[2];      	//規格小数点以下桁数
+    char    KIKA_NUM1[13];      //規格値１
+    char    KIKA_NUM2[13];      //規格値２
+    char    KIKA_NUM3[13];      //規格値３
+    char  	KIKA_STR[41];       //規格値文字
+    char  	KIKA_SUB1[21];      //規格値サブ１
+    char   	KIKA_SUB2[21];      //規格値サブ２
+    char   	KIKA_SUB3[21];      //規格値サブ３
+    char    SOKU_SU[3];        	//測定指示ｎ数
+    char   	SOKU_FLG[2];       	//測定項目の有無
+    char    TOKU_FLG[2];       	//特別項目の有無
+    char    KIKA_PRT[2];       	//上限下限値の印刷
+    char    VALUE_TYPE[2];     	//測定値表現
+    char    VALUE_DECI[2];     	//測定値小数点以下桁数
+	char	SOKU_VAL[99][16];
+    char    SOKU_VAL_SU[3];    	//測定実績ｎ数
+    char    SOKU_VAL_AVE[16];   //測定平均値
+    char    SOKU_VAL_MAX[15];   //測定最大値
+    char    SOKU_VAL_MIN[15];   //測定最小値
+    char    SOKU_OK[4];        	//測定値判定
+    char  	SKTYMD[9];         	//測定日
+    char  	ADDYMD[9];         	//登録日
+    char  	ADDTIM[5];         	//登録時間
+    char  	UPDYMD[9];         	//変更日
+    char  	UPDTIM[5];         	//変更時間
+    char    UPDCHR[7];         	//担当者コード
+    char    UPDCNT[4];         	//更新回数
+	//String 	UPD_NAME;			//担当者名
+	char 	UPD_NAME[50];		//担当者名	//2003.05.17 E.Takase Add
+	int		COL;
+	int		ROW;
+	double	MAX;
+	double	MIN;               
+};
+
+struct LOTWARI_DATA {
+	char LOTNO[7];
+	char DTKSHIN1_SZ[21];
+	char DTKSHIN2_SZ[21];
+	char DTKSHIN3_SZ[21];
+	char DTKSHIN4_SZ[21];
+	char DTKSHIN5_SZ[21];
+	char DTKSHIN6_SZ[21];
+	char SOZAI1_LOTNO[7];
+	char SOZAI2_LOTNO[7];
+	char SOZAI3_LOTNO[7];
+	char SOZAI4_LOTNO[7];
+	char SOZAI5_LOTNO[7];
+	char SOZAI6_LOTNO[7];
+};
+
+
+extern HANDLE hRIRE_LOTWARI_DATA;
+extern LOTWARI_DATA *pRIRE_LOTWARI_DATA;
+extern HANDLE hSOKU_LOTWARI_DATA;
+extern LOTWARI_DATA *pSOKU_LOTWARI_DATA;
+
+struct DTKSHIN_LOT {
+    char DTKSIN_SZ[21];
+};
+
+
+
+extern int     SEQNOMAX;
+extern int     USER_COD;
+extern String  USER_NAM;
+extern String  BUMO_COD;
+extern String  BUMO_NAM;
+extern bool    DataSave;
+extern int 		RSInputFlag;
+extern int     KENSAKU_Mode;           //一覧検索モード
+                                       //１：検査予定日
+                                       //２：得意先品番
+                                       //３：ロットNO
+
+//extern KDB1_DATA Tmp_KDB1;             // 選択した工程能力
+//extern KDB1_DATA Cur_Kdb1;             // 選択したヒストグラムデータ
+
+extern double E_Screen_Data[3][20];
+
+extern int E_Scale;
+
+extern int KEIJKBN_KM02;                //KM02の製品規格の形状区分
+extern int LD_HP_TAN_KM02;                //KM02の製品規格の形状区分
+extern int MAGE_TAN_KM02;                //KM02の製品規格の形状区分
+
+extern RSCOM RS232;
+extern KIKAKU KIKAKU_MOJI;
+
+extern HANDLE hSOZAI_RIREKI_DATA;		//素材履歴データ
+extern HANDLE hSOZAI_SYUKA_DATA; 		//素材出荷用データ
+extern HANDLE hSOZAI_OR_DATA;    		//素材ORデータ
+extern HANDLE hRIREKI_DATA;      		// 過去履歴対象ロットデータ
+extern HANDLE hSYUKA_DATA;       		// 出荷用データ
+extern HANDLE hORDATA;           		//出荷ORデータ
+extern HANDLE hRIREKI_DATA;       		// 過去履歴対象ロット検索用
+extern HANDLE hSOZAI_RIREKI_LOT; 		// 過去履歴対象ロット検索用
+extern HANDLE hKSM01_DATA;
+
+extern KSM01_DATA 	pKSM01_DATA;
+extern KSM02_DATA 	pORDATA[100];
+extern KSM02_DATA   pSOZAI_OR_DATA[100];
+
+/*
+extern KSM01_DATA *pKSM01_DATA;
+extern KSD02_DATA *pSOZAI_RIREKI_DATA;		//素材履歴データ
+extern KSM02_DATA *pSOZAI_SYUKA_DATA; 		//素材出荷用データ
+extern KSM02_DATA *pSOZAI_OR_DATA;    		//素材ORデータ
+extern KSD02_DATA *pRIREKI_DATA;      		// 過去履歴対象ロットデータ
+extern KSM02_DATA *pSYUKA_DATA;       		// 出荷用データ
+extern KSM02_DATA *pORDATA;           		//出荷ORデータ
+extern KSD01_DATA *pRIREKI_DATA_LOT;       		// 過去履歴対象ロット検索用
+extern KSD01_DATA *pSOZAI_RIREKI_LOT; 		// 過去履歴対象ロット検索用
+*/
+extern GRAPHADDRESS GraphLotAddress[10];	//グラフ描画対象
+
+//測定実績データ用メモリ
+extern HANDLE 		hRIRE_KSD01DATA;
+extern KSD01_DATA 	*pRIRE_KSD01DATA;
+extern HANDLE 		hSOKU_KSD01DATA;
+extern KSD01_DATA 	*pSOKU_KSD01DATA;
+
+
+
+extern HANDLE 		hKSD01_DATA;
+extern KSD01_DATA 	*pKSD01_DATA;
+
+//セル情報
+extern HANDLE hCELLINFO_SOKU_SYUKA;
+extern HANDLE hCELLINFO_RIRE_SYUKA;
+extern HANDLE hCELLINFO_SOKU_SOZAI;
+extern HANDLE hCELLINFO_RIRE_SOZAI;
+extern CELLINFO_DATA *pCELLINFO_SOKU_SYUKA;
+extern CELLINFO_DATA *pCELLINFO_RIRE_SYUKA;
+extern CELLINFO_DATA *pCELLINFO_SOKU_SOZAI;
+extern CELLINFO_DATA *pCELLINFO_RIRE_SOZAI;
+//分割データ
+extern BUN_DATA *pBUN_DATA;
+
+extern AnsiString MSG_00;
+extern AnsiString MSG_01;
+extern AnsiString MSG_02;
+extern AnsiString MSG_03;
+extern AnsiString MSG_04;
+extern AnsiString MSG_05;
+extern AnsiString MSG_06;
+extern AnsiString MSG_07;
+extern AnsiString MSG_08;
+extern AnsiString MSG_09;
+extern AnsiString MSG_10;
+extern AnsiString MSG_11;
+extern AnsiString MSG_12;
+extern AnsiString MSG_13;
+
+extern AnsiString Select_Str1;
+extern AnsiString Select_Str2;
+extern AnsiString Select_Str3;
+extern AnsiString Select_Str4;
+extern AnsiString Select_Str5;
+extern int Select_Cnt;
+//extern AnsiString sBuf;
+extern AnsiString sMsg2;
+
+#define GAIKAN_NAME_COLOR 0x00FFEEDD
+//#define MICRO_COLOR 0x00CEFFCE
+#define SOZAI_COLOR 0x00D2FFFF
+//測定機器カラー一覧
+//KIKI_NO = 1 マイクロメータ
+#define MICROMETER_COLOR  0x009FFDD2
+//KIKI_NO = 2 ノギス
+#define NOGISU_COLOR      0x001FFA97
+//KIKI_NO = 3 マイクロメータ＆天秤
+#define MICROTENBIN_COLOR 0x0004DD7B
+//KIKI_NO = 4 天秤
+#define TENBIN_COLOR      0x00EAF7AC
+//KIKI_NO = 5 材料試験機
+#define ZAIRYOU_COLOR     0x00FFEEDD
+//KIKI_NO = 6 投影機
+#define TOUEIKI_COLOR     0x00D2D2FF
+//KIKI_NO = 7 顕微鏡
+#define KENBIKYO_COLOR    0x00ACACFF
+//KIKI_NO = 8 面粗計
+#define MENARAKEI_COLOR   0x00D9D9D9
+//KIKI_NO = 9 硬度計C
+#define KOUDOKEI_C_COLOR  0x00AAD5FF
+//KIKI_NO = 10 硬度計D
+#define KOUDOKEI_D_COLOR  0x0080BFFF
+//KIKI_NO = 11 抵抗率測定器
+#define TEIKOU_COLOR      0x00FED1C9
+//KIKI_NO = 12 リード線抵抗率測定器
+#define READTEIKOU_COLOR  0x00FEB8AB
+//KIKI_NO = 99 その他
+#define ETC_COLOR         0x00F3F3F3
+

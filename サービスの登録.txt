@@ -1,0 +1,5 @@
+//[スタートメニュー]→[ファイル名を指定して実行]
+//登録
+d:\Tkss_new\TkssS01.exe /install
+//登録解除
+d:\Tkss_new\TkssS01.exe /uninstall

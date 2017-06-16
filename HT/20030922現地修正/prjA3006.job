@@ -1,0 +1,48 @@
+OUTPUT_FORMAT("coff-h8300")
+OUTPUT_ARCH(h8300s)
+OUTPUT(ap.o)
+MEMORY
+{
+	rom : ORIGIN = 0x040000, LENGTH = 256K
+	ram : ORIGIN = 0x200000, LENGTH = 512K
+}
+SECTIONS
+{
+	.text 0x45000 : {
+		/* ap.o は、コンパイルでの出力ファイル名 */
+		prjA3006.o (.text , .rodata , .vectors)	/* .vectors　は、ダミー */
+		C:\Cygnus\Ht20\lib\ansiconv.o(.text , .rodata , .vectors)
+		C:\Cygnus\Gnuc\lib\dpblib.a(.text , .rodata , .vectors)
+		C:\Cygnus\Gnuc\lib\libg.a(.text , .rodata , .vectors)
+		C:\Cygnus\Gnuc\lib\libc.a(.text , .rodata , .vectors)
+		C:\Cygnus\Gnuc\lib\libm.a(.text , .rodata , .vectors)
+		C:\Cygnus\Gnuc\lib\libgcc.a(.text , .rodata , .vectors)
+		_etext = .;
+	}
+
+	/* 初期値を持った静的変数を0x20B000番地のmdataセクションに配置 */
+	.mdata 0x20B000 :	AT (ADDR(.text) + SIZEOF (.text) ){
+		_data = . ;
+		*(.data)
+		_edata = . ;
+	}
+
+	/* 初期値を持たない静的変数をmdataセクションの後に配置 */
+	.mbss _edata + 2:{
+		 _bss_start = . ;
+		*(.bss)
+		*(COMMON)
+		_end = . ;  
+	}
+
+	.ini 0x40000 : {
+		C:\Cygnus\Ht20\lib\ini.o
+		C:\Cygnus\Ht20\lib\debg.o
+	}
+	.rame 0x41ffc : {
+		C:\Cygnus\Ht20\lib\reframe.o
+	}
+	.os  0x42000 : {
+		C:\Cygnus\Ht20\lib\cbdos60.o
+	}
+}

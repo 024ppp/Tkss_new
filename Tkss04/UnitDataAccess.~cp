@@ -1,0 +1,390 @@
+//---------------------------------------------------------------------------
+//
+//  UnitDataAccess.cpp
+//    【出荷検査システム－測定データ削除】
+//    メインフォーム（TForm1クラス）のメンバ関数（データアクセス関連）の定義
+//
+//  作成者
+//    田村　敦司
+//
+//---------------------------------------------------------------------------
+#include <vcl.h>
+#include <stdio.h>
+#pragma hdrstop
+
+#include "UnitDataAccess.h"
+#include "unit1.h"
+#include "Unit2.h"
+
+//---------------------------------------------------------------------------
+#pragma package(smart_init)
+
+//---------------------------------------------------------------------------
+//
+//  概要
+//    自作関数			：測定済みデータを削除します。
+//
+//  機能説明
+//    指定された品番、ロットNOの測定済みデータを
+//    テーブル(KSD01,KSD02,KSD03,KSD11,KSD12)から削除します
+//
+//  パラメタ説明
+//    AnsiString sDTKSHIN：代表得意先品番
+//    AnsiString sLOTNO	：ロットNO
+//
+//  戻り値
+//    bool				：true = 成功、false = 失敗
+//
+//  備考
+//    なし。
+//
+//---------------------------------------------------------------------------
+//20170406 Y.Onishi 「削除」実行時、自社品番を考慮
+//bool __fastcall TForm1::DelData( AnsiString sDTKSHIN, AnsiString sLOTNO )
+bool __fastcall TForm1::DelData( AnsiString sDTKSHIN, AnsiString sLOTNO , AnsiString sHINBAN )
+{
+     AnsiString sBuf;
+
+     // Initial Query
+     Query1->Close();
+     Query1->SQL->Clear();
+
+     // 問合せ文作成
+     sBuf = "DELETE from KSD01";
+     sBuf +=" WHERE DTKSHIN='" + sDTKSHIN + "'";        // 得意先品番
+     sBuf +=" AND LOTNO='" + sLOTNO + "'";            	// LOTNO
+     //20170406 Y.Onishi
+     sBuf +=" AND HINBAN='" + sHINBAN + "'";            // 自社品番
+     Query1->SQL->Add(sBuf);
+
+     // 問い合せ文の実行
+     try {
+         Query1->ExecSQL();
+     }
+     catch(EDatabaseError& e) {
+         SBr1->Panels->Items[0]->Text = e.Message;
+         SBr1->Update();
+         return(False);
+     }
+     catch(Exception& e) {
+         SBr1->Panels->Items[0]->Text = e.Message;
+         SBr1->Update();
+         return(False);
+     }
+
+
+     // Initial Query
+     Query1->Close();
+     Query1->SQL->Clear();
+
+     // 問合せ文作成
+     sBuf = "DELETE from KSD02";
+     sBuf +=" WHERE DTKSHIN='" + sDTKSHIN + "'";        // 得意先品番
+     sBuf +=" AND LOTNO='" + sLOTNO + "'";            	// LOTNO
+     Query1->SQL->Add(sBuf);
+
+     // 問い合せ文の実行
+     try {
+         Query1->ExecSQL();
+     }
+     catch(EDatabaseError& e) {
+         SBr1->Panels->Items[0]->Text = e.Message;
+         SBr1->Update();
+         return(False);
+     }
+     catch(Exception& e) {
+         SBr1->Panels->Items[0]->Text = e.Message;
+         SBr1->Update();
+         return(False);
+     }
+
+
+     // Initial Query
+     Query1->Close();
+     Query1->SQL->Clear();
+
+     // 問合せ文作成
+     sBuf = "DELETE from KSD03";
+     sBuf +=" WHERE DTKSHIN='" + sDTKSHIN + "'";        // 得意先品番
+     sBuf +=" AND LOTNO='" + sLOTNO + "'";            	// LOTNO
+     Query1->SQL->Add(sBuf);
+
+     // 問い合せ文の実行
+     try {
+         Query1->ExecSQL();
+     }
+     catch(EDatabaseError& e) {
+         SBr1->Panels->Items[0]->Text = e.Message;
+         SBr1->Update();
+         return(False);
+     }
+     catch(Exception& e) {
+         SBr1->Panels->Items[0]->Text = e.Message;
+         SBr1->Update();
+         return(False);
+     }
+
+
+     // Initial Query
+     Query1->Close();
+     Query1->SQL->Clear();
+
+     // 問合せ文作成
+     sBuf = "DELETE from KSD11";
+     sBuf +=" WHERE DTKSHIN='" + sDTKSHIN + "'";        // 得意先品番
+     sBuf +=" AND LOTNO='" + sLOTNO + "'";            	// LOTNO
+     Query1->SQL->Add(sBuf);
+
+     // 問い合せ文の実行
+     try {
+         Query1->ExecSQL();
+     }
+     catch(EDatabaseError& e) {
+         SBr1->Panels->Items[0]->Text = e.Message;
+         SBr1->Update();
+         return(False);
+     }
+     catch(Exception& e) {
+         SBr1->Panels->Items[0]->Text = e.Message;
+         SBr1->Update();
+         return(False);
+     }
+
+
+     // Initial Query
+     Query1->Close();
+     Query1->SQL->Clear();
+
+     // 問合せ文作成
+     sBuf = "DELETE from KSD12";
+     sBuf +=" WHERE DTKSHIN='" + sDTKSHIN + "'";        // 得意先品番
+     sBuf +=" AND LOTNO='" + sLOTNO + "'";            	// LOTNO
+     Query1->SQL->Add(sBuf);
+
+     // 問い合せ文の実行
+     try {
+         Query1->ExecSQL();
+     }
+     catch(EDatabaseError& e) {
+         SBr1->Panels->Items[0]->Text = e.Message;
+         SBr1->Update();
+         return(False);
+     }
+     catch(Exception& e) {
+         SBr1->Panels->Items[0]->Text = e.Message;
+         SBr1->Update();
+         return(False);
+     }
+
+
+     return(True);
+
+}
+
+//---------------------------------------------------------------------------
+//
+//  概要
+//    自作関数			：測定済みデータを検索します。（呼び出し）
+//
+//  機能説明
+//    指定された品番、ロットNOの検索条件より測定済みデータの検索します
+//
+//  パラメタ説明
+//    なし。
+//
+//  戻り値
+//    int				：1 = 検索結果あり、 0 = 検索結果なし
+//
+//  備考
+//    なし。
+//
+//---------------------------------------------------------------------------
+int __fastcall TForm1::MAIN_Serch01(void)
+{
+    // 新しいトランザクションを開始
+    if( Database1->InTransaction == false )
+    {
+        Database1->StartTransaction();
+        DataSave = false;
+    }
+
+    if ( KSD01_Serch01() == 0)
+    {
+       return(0);
+    }
+    return(1);
+}
+
+//---------------------------------------------------------------------------
+//
+//  概要
+//    自作関数			：測定済みデータを検索します。（本体）
+//
+//  機能説明
+//    指定された品番、ロットNOの検索条件より測定済みデータの検索し、
+//    StringGridにデータを設定します
+//
+//  パラメタ説明
+//    なし。
+//
+//  戻り値
+//    int				：1 = 検索結果あり、 0 = 検索結果なし
+//
+//  備考
+//    なし。
+//
+//---------------------------------------------------------------------------
+//KSD01から検索
+int __fastcall TForm1::KSD01_Serch01(void)
+{
+	int iRow;
+	AnsiString sBuf;
+	// Initial Query
+	Query1->Close();
+	Query1->SQL->Clear();
+
+	// 問合せ実行
+	sBuf = "SELECT KSD01.DTKSHIN, KSD01.LOTNO, KSD01.HINBAN, KSD01.ZISNAM, KSD01.HINMEI,";
+    sBuf += " KSD01.DTKSNAM, KSD01.SOKUTEI_NUM, KSD01.SOZAI_OK, KSD01.SYUKA_OK,";
+    sBuf += " KSD01.SKTYMD_SZ, KSD01.SKTYMD, SM12S.TANNAM";
+    sBuf += " FROM KSD01";
+    sBuf += " LEFT JOIN SM12S ON KSD01.UPDCHR = SM12S.TANSYA";
+	sBuf += " WHERE KSD01.DTKSHIN LIKE '" + EdtHIN->Text + "%'";
+	sBuf += " AND KSD01.LOTNO LIKE '" + EdtLOT->Text + "%'";
+	sBuf += " ORDER BY KSD01.DTKSHIN, SUBSTR(KSD01.LOTNO,2)";
+
+	Query1->SQL->Add(sBuf);
+	Query1->Open();
+	Query1->Active = true;
+
+	if ( Query1->Bof == true && Query1->Eof ) {
+		//検索結果 ０件
+		return(0);
+
+	}
+	iRow = 1;
+
+	while( !Query1->Eof ){
+
+		// グリッドの最大行数が超えていないかチェックする
+		if( iRow >= SGr_List->RowCount ){
+			SGr_List->RowCount = iRow + 1;
+		}
+
+		// グリッドにデータをセットします。
+		sBuf = iRow ;
+		SGr_List->Cells[0][iRow] = AnsiString::StringOfChar(' ', 7-sBuf.Length()) + sBuf;    //No
+		sBuf = iRow + 1;
+
+		sBuf = Form1->Query1->FieldValues["DTKSHIN"];
+		SGr_List->Cells[1][iRow] = sBuf;   //得意先品番
+
+		sBuf = Form1->Query1->FieldValues["LOTNO"];
+		SGr_List->Cells[2][iRow] = sBuf;   //ロットNO
+
+        if( VarIsNull(Query1->FieldValues["HINBAN"]) ){
+			sBuf = "";
+		} else{
+			sBuf = Query1->FieldValues["HINBAN"];
+		}
+        SGr_List->Cells[3][iRow] = sBuf;   //自社品番
+
+        if( VarIsNull(Query1->FieldValues["ZISNAM"]) ){
+			sBuf = "";
+		} else{
+			sBuf = Query1->FieldValues["ZISNAM"];
+		}
+        SGr_List->Cells[4][iRow] = sBuf;   //材質名
+
+        if( VarIsNull(Query1->FieldValues["HINMEI"]) ){
+			sBuf = "";
+		} else{
+			sBuf = Query1->FieldValues["HINMEI"];
+		}
+        SGr_List->Cells[5][iRow] = sBuf;   //品名
+
+        if( VarIsNull(Query1->FieldValues["DTKSNAM"]) ){
+			sBuf = "";
+		} else{
+			sBuf = Query1->FieldValues["DTKSNAM"];
+		}
+        SGr_List->Cells[6][iRow] = sBuf;   //代表得意先名
+
+		sBuf = Query1->FieldValues["SOKUTEI_NUM"];
+		SGr_List->Cells[7][iRow] = AnsiString::StringOfChar(' ', 5-sBuf.Length()) + sBuf;	//測定項目数
+
+		sBuf = Query1->FieldValues["SOZAI_OK"];
+        switch( sBuf.ToIntDef(-1) ){
+        	case -1:	sBuf = " 測定中";	break;
+        	case  0:	sBuf = "  ＯＫ";	break;
+        	case  1:	sBuf = "  ＮＧ";	break;
+        	case  2:
+            default:	sBuf = "";			break;
+		}
+        SGr_List->Cells[8][iRow] = sBuf;   //素材判定
+
+		sBuf = Query1->FieldValues["SYUKA_OK"];
+        switch( sBuf.ToIntDef(-1) ){
+        	case -1:	sBuf = " 測定中";	break;
+        	case  0:	sBuf = "  ＯＫ";	break;
+        	case  1:	sBuf = "  ＮＧ";	break;
+        	case  2:
+            default:	sBuf = "";			break;
+		}
+		SGr_List->Cells[9][iRow] = sBuf;   //出荷判定
+
+        if( VarIsNull(Query1->FieldValues["SKTYMD_SZ"]) ){
+			sBuf = "";
+		} else{
+			sBuf = Query1->FieldValues["SKTYMD_SZ"];
+		}
+    	if( sBuf.Length() == 8 ){
+    		sBuf.Insert("/",5);
+       		sBuf.Insert("/",8);
+   		}
+		SGr_List->Cells[10][iRow] = sBuf;  //素材用測定日
+
+        if( VarIsNull(Query1->FieldValues["SKTYMD"]) ){
+			sBuf = "";
+		} else{
+			sBuf = Query1->FieldValues["SKTYMD"];
+		}
+    	if( sBuf.Length() == 8 ){
+    		sBuf.Insert("/",5);
+       		sBuf.Insert("/",8);
+   		}
+		SGr_List->Cells[11][iRow] = sBuf;  //出荷用測定日
+
+        if( VarIsNull(Query1->FieldValues["TANNAM"]) ){
+			sBuf = "";
+		} else{
+			sBuf = Query1->FieldValues["TANNAM"];
+		}
+        SGr_List->Cells[12][iRow] = sBuf;  //代表更新者
+
+		// カーソルを次にセットする
+		Query1->Next();
+
+		iRow += 1;
+	}
+
+    SGr_List->RowCount = iRow + 1;
+    SGr_List->Cells[ 0][SGr_List->RowCount - 1 ] = "";
+    SGr_List->Cells[ 1][SGr_List->RowCount - 1 ] = "";
+    SGr_List->Cells[ 2][SGr_List->RowCount - 1 ] = "";
+    SGr_List->Cells[ 3][SGr_List->RowCount - 1 ] = "";
+    SGr_List->Cells[ 4][SGr_List->RowCount - 1 ] = "";
+    SGr_List->Cells[ 5][SGr_List->RowCount - 1 ] = "";
+    SGr_List->Cells[ 6][SGr_List->RowCount - 1 ] = "";
+    SGr_List->Cells[ 7][SGr_List->RowCount - 1 ] = "";
+    SGr_List->Cells[ 8][SGr_List->RowCount - 1 ] = "";
+    SGr_List->Cells[ 9][SGr_List->RowCount - 1 ] = "";
+    SGr_List->Cells[10][SGr_List->RowCount - 1 ] = "";
+    SGr_List->Cells[11][SGr_List->RowCount - 1 ] = "";
+    SGr_List->Cells[12][SGr_List->RowCount - 1 ] = "";
+
+	return(1);
+}
+
+
+
